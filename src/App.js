@@ -1,8 +1,11 @@
 
+import Home from "./components/Home";
+
+
 function App() {
   return (
-      <div className='text-7xl'>
-        Hello World
+      <div>
+        <Home />
       </div>
   );
 }
