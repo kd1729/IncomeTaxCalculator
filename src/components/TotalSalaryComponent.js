@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from 'react-router-dom'
 
 import SalaryHeader from "./SalaryHeader";
 import ArrearsComponent from "./ArrearsComponent";
+import BonusComponent from "./BonusComponent";
 
 const months = [
   { id: 0, name: "March-22" },
@@ -19,7 +21,10 @@ const months = [
 ];
 
 export default function TotalPositiveSalaryComponent() {
-  const [NPSApplicable, setNPSApplicable] = useState(true);
+
+  const location = useLocation();
+  const NPSApplicable = location.state.NPSApplicable;
+  const teacherName = location.state.teacherName;
 
   const [Gradepay, setGradepay] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -49,9 +54,6 @@ export default function TotalPositiveSalaryComponent() {
   const [HRA, setHRA] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const CurrIdxHRA = useRef(0);
 
-  const [Bonus, setBonus] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const CurrIdxBonus = useRef(0);
-
   const [OtherAllowance, setOtherAllowance] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
@@ -67,12 +69,11 @@ export default function TotalPositiveSalaryComponent() {
         parseFloat(Basicpay[i]) +
         parseFloat(DA[i]) +
         parseFloat(HRA[i]) +
-        parseFloat(Bonus[i]) +
         parseFloat(OtherAllowance[i]);
     }
     setTotalPositiveSalary([...TotalPositiveSalary]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Basicpay, DA, HRA, Bonus, OtherAllowance]);
+  }, [Basicpay, DA, HRA, OtherAllowance]);
 
   // NEGATIVE SALARY
 
@@ -172,43 +173,30 @@ export default function TotalPositiveSalaryComponent() {
     Arrear2NPSByEmp: 0,
   });
 
+  const Bonus = useRef({
+    Bonus: 0,
+    GPFPerc: 0.75,
+    BonusGPF: 0,
+  });
+
   return (
     <div className="flex flex-col">
 
-      {/* Toggle Button */}
-      <div className="flex flex-row gap-4 justify-center my-8">
-        <div className="flex flex-row">
-          <label className=" font-bold text-2xl">NPS </label>
-          <input
-            type="checkbox"
-            className="ml-2 w-8 hover:cursor-pointer"
-            checked={NPSApplicable}
-            onChange={(e) => setNPSApplicable((e) => !e)}
-          />
-        </div>
-
-        <div className="flex flex-row">
-          <label className=" font-bold text-2xl">GPF </label>
-          <input
-            type="checkbox"
-            className="ml-2 w-8 hover:cursor-pointer"
-            checked={!NPSApplicable}
-            onChange={(e) => setNPSApplicable((e) => !e)}
-          />
-        </div>
+      <div>
+        Welcome {teacherName}!
       </div>
 
       <SalaryHeader />
 
       {months.map((month) => (
         <div
-          className="flex flex-row gap-6 text-base font-semibold bg-gray-300"
+          className="flex flex-row text-base font-semibold bg-gray-300"
           key={month.id}
         >
-          <div className="text-center py-2 my-2 w-24 ">{month.name}</div>
+          <div className="text-center py-2 w-36 bg-pink-200">{month.name}</div>
 
           {/* setting GradePay */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4">
             <input
               type="number"
               min="0"
@@ -226,7 +214,7 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* setting BasicPay */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             <input
               type="number"
               min="0"
@@ -244,7 +232,7 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* setting DA% */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             <input
               type="number"
               min="0"
@@ -262,12 +250,12 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* displaying DA */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4">
             {Math.round(DA[month.id])}
           </div>
 
           {/* setting HRA */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             <input
               type="number"
               min="0"
@@ -284,26 +272,8 @@ export default function TotalPositiveSalaryComponent() {
             />
           </div>
 
-          {/* setting Bonus */}
-          <div className="text-center py-2 my-2 w-24 ">
-            <input
-              type="number"
-              min="0"
-              className="w-24 text-center outline-none"
-              value={Bonus[month.id]}
-              onChange={(e) => {
-                CurrIdxBonus.current = month.id;
-                Bonus[CurrIdxBonus.current] = e.target.value;
-                for (let i = CurrIdxBonus.current + 1; i < 12; i++) {
-                  Bonus[i] = e.target.value;
-                }
-                setBonus([...Bonus]);
-              }}
-            />
-          </div>
-
           {/* setting OtherAllowance */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             <input
               type="number"
               min="0"
@@ -321,22 +291,22 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* displaying TotalPositiveSalary */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(TotalPositiveSalary[month.id])}
           </div>
 
           {/* displaying NPS */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(NPS[month.id])}
           </div>
 
           {/* displaying GPF */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(GPF[month.id])}
           </div>
 
           {/* setting GIS */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4">
             <input
               type="number"
               min="0"
@@ -354,7 +324,7 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* setting TDS */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             <input
               type="number"
               min="0"
@@ -372,17 +342,17 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* displaying totalNegative */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(TotalNegativeSalary[month.id])}
           </div>
 
           {/* displaying NetSalary */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(NetSalary[month.id])}
           </div>
 
           {/* displaying NPS By Employer */}
-          <div className="text-center py-2 my-2 w-24 ">
+          <div className="text-center py-2 w-36 px-4 ">
             {Math.round(NPSByEmp[month.id])}
           </div>
         </div>
@@ -394,6 +364,11 @@ export default function TotalPositiveSalaryComponent() {
         Arrears={Arrears}
         NPSApplicable={NPSApplicable}
       />
+
+      <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
+
+
+      
     </div>
   );
 }

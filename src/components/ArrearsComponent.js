@@ -47,7 +47,7 @@ Arrears.current.Arrear2Total = Arrears.current.Arrear2 - Arrears.current.Arrear2
 
 
   return (
-    <div className="mb-20 flex flex-row items-center justify-center gap-40 pb-4 bg-yellow-100">
+    <div className="mt-10 flex flex-row items-center justify-center gap-40 pb-4 bg-yellow-100">
       <div>
         <h3 className="text-xl font-bold mt-4">Arrears</h3>
         <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1)}</p>

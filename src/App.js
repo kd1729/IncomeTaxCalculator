@@ -8,7 +8,8 @@ function App() {
   return (
       <div>
         <Routes>
-          <Route path='/' element={<TotalSalaryComponent/>} />
+          <Route path='/' element={<Profile/>} />
+          <Route path='/salary' element={<TotalSalaryComponent/>} />
         </Routes>
       </div>
   );
