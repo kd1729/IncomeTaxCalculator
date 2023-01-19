@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import NameComponent from "./NameComponent";
-
 export default function Profile() {
   const [NPSApplicable, setNPSApplicable] = useState(true);
-  const navigate = useNavigate()
+  const [TeacherName, setTeacherName] = useState("");
+
+  const navigate = useNavigate();
   return (
     <div className="grid justify-center items-center">
       {/* Toggle Button */}
-      <div className="flex flex-row gap-4 justify-center my-8">
+      <div className="flex flex-row gap-4 justify-center my-16">
         <div className="flex flex-row">
           <label className=" font-bold text-2xl">NPS </label>
           <input
@@ -33,18 +33,24 @@ export default function Profile() {
 
       <h1 className="text-4xl font-bold text-center my-12">Teacher Details</h1>
       <div>
-        <NameComponent name="Teacher Name" />
+        <span className="text-2xl font-semibold pr-4">Name : </span>
+        <input
+          className="pl-2 h-10 text-xl"
+          type="text"
+          value={TeacherName}
+          onChange={(e) => setTeacherName(e.target.value)}
+        />
       </div>
 
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mt-8 w-40"
         onClick={() => {
-          navigate('/salary',
-          {
+          navigate("/salary", {
             state: {
               NPSApplicable: NPSApplicable,
-            }
-          })
+              TeacherName: TeacherName,
+            },
+          });
         }}
       >
         Submit

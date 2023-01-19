@@ -47,35 +47,35 @@ Arrears.current.Arrear2Total = Arrears.current.Arrear2 - Arrears.current.Arrear2
 
 
   return (
-    <div className="mt-10 flex flex-row items-center justify-center gap-40 pb-4 bg-yellow-100">
+    <div className="mt-10 flex flex-row items-center justify-center gap-12 pb-4">
       <div>
-        <h3 className="text-xl font-bold mt-4">Arrears</h3>
-        <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1)}</p>
-        <p className="text-lg font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2)}</p>
+        <h3 className="text-lg font-bold mt-4">DA Arrears</h3>
+        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1)}</p>
+        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2)}</p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold mt-4">Arrears NPS</h3>
-        <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPS)}</p>
-        <p className="text-lg font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPS)}</p>
+        <h3 className="text-lg font-bold mt-4">NPS on Arrears </h3>
+        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPS)}</p>
+        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPS)}</p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold mt-4">Arrears GPF</h3>
-        <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1GPF)}</p>
-        <p className="text-lg font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2GPF)}</p>
+        <h3 className="text-lg font-bold mt-4"> GPF on Arrears</h3>
+        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1GPF)}</p>
+        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2GPF)}</p>
       </div>
       
       <div>
-        <h3 className="text-xl font-bold mt-4">Arrears Final</h3>
-        <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1Total)}</p>
-        <p className="text-lg font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2Total)}</p>
+        <h3 className="text-lg font-bold mt-4">Net Payment on arrear</h3>
+        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1Total)}</p>
+        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2Total)}</p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold mt-4">Arrears NPS By Employee</h3>
-        <p className="text-lg font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}</p>
-        <p className="text-lg font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp)}</p>
+        <h3 className="text-lg font-bold mt-4"> Employee contribution of NPS on arrear</h3>
+        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}</p>
+        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp)}</p>
       </div>
     </div>
   );

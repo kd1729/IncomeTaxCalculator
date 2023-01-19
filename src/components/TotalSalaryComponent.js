@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 import SalaryHeader from "./SalaryHeader";
 import ArrearsComponent from "./ArrearsComponent";
@@ -16,15 +16,14 @@ const months = [
   { id: 7, name: "Oct-22" },
   { id: 8, name: "Nov-22" },
   { id: 9, name: "Dec-22" },
-  { id: 10, name: "Jan-22" },
-  { id: 11, name: "Feb-22" },
+  { id: 10, name: "Jan-23" },
+  { id: 11, name: "Feb-23" },
 ];
 
 export default function TotalPositiveSalaryComponent() {
-
   const location = useLocation();
   const NPSApplicable = location.state.NPSApplicable;
-  const teacherName = location.state.teacherName;
+  const teacherName = location.state.TeacherName;
 
   const [Gradepay, setGradepay] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -181,8 +180,7 @@ export default function TotalPositiveSalaryComponent() {
 
   return (
     <div className="flex flex-col">
-
-      <div>
+      <div className="text-center text-4xl my-8 font-semibold">
         Welcome {teacherName}!
       </div>
 
@@ -358,17 +356,19 @@ export default function TotalPositiveSalaryComponent() {
         </div>
       ))}
 
-      <ArrearsComponent
-        Basicpay={Basicpay}
-        DAPerc={DAPerc}
-        Arrears={Arrears}
-        NPSApplicable={NPSApplicable}
-      />
-
-      <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
-
-
-      
+      <div className="flex flex-row mt-8">
+        <div className="w-[50%] h-40 bg-yellow-100">
+          <ArrearsComponent
+            Basicpay={Basicpay}
+            DAPerc={DAPerc}
+            Arrears={Arrears}
+            NPSApplicable={NPSApplicable}
+          />
+        </div>
+        <div className="w-[50%] h-40 bg-green-300">
+          <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
+        </div>
+      </div>
     </div>
   );
 }
