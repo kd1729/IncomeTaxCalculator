@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import SalaryHeader from "./SalaryHeader";
+import ArrearsComponent from "./ArrearsComponent";
 
 const months = [
   { id: 0, name: "March-22" },
@@ -18,7 +19,6 @@ const months = [
 ];
 
 export default function TotalPositiveSalaryComponent() {
-
   const [NPSApplicable, setNPSApplicable] = useState(true);
 
   const [Gradepay, setGradepay] = useState([
@@ -79,12 +79,12 @@ export default function TotalPositiveSalaryComponent() {
   const [NPS, setNPS] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   useEffect(() => {
-    if(NPSApplicable){
-        for (let i = 0; i < 12; i++) {
-          NPS[i] = ((parseFloat(Basicpay[i]) + parseFloat(DA[i])) * 10) / 100;
-        }
+    if (NPSApplicable) {
+      for (let i = 0; i < 12; i++) {
+        NPS[i] = ((parseFloat(Basicpay[i]) + parseFloat(DA[i])) * 10) / 100;
+      }
       setNPS([...NPS]);
-    }else{
+    } else {
       setNPS([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,12 +93,12 @@ export default function TotalPositiveSalaryComponent() {
   const [GPF, setGPF] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   useEffect(() => {
-    if(!NPSApplicable){
+    if (!NPSApplicable) {
       for (let i = 0; i < 12; i++) {
         GPF[i] = (parseFloat(Basicpay[i]) * 10) / 100;
       }
       setGPF([...GPF]);
-    }else{
+    } else {
       setGPF([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -146,28 +146,53 @@ export default function TotalPositiveSalaryComponent() {
   ]);
 
   useEffect(() => {
-    if(NPSApplicable){
+    if (NPSApplicable) {
       for (let i = 0; i < 12; i++) {
-        NPSByEmp[i] = ((parseFloat(Basicpay[i]) + parseFloat(DA[i])) * 14) / 100;
+        NPSByEmp[i] =
+          ((parseFloat(Basicpay[i]) + parseFloat(DA[i])) * 14) / 100;
       }
       setNPSByEmp([...NPSByEmp]);
-    }else{
+    } else {
       setNPSByEmp([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Basicpay, DA, NPSApplicable]);
 
+  // Arrears
+  const Arrears = useRef({
+    Arrear1: 0,
+    Arrear2: 0,
+    Arrear1NPS: 0,
+    Arrear2NPS: 0,
+    Arrear1GPF: 0,
+    Arrear2GPF: 0,
+    Arrear1Total: 0,
+    Arrear2Total: 0,
+    Arrear1NPSByEmp: 0,
+    Arrear2NPSByEmp: 0,
+  });
+
   return (
     <div className="flex flex-col">
 
-      {/* make a toggle button to swtich between NPS and GPF */}
+      {/* Toggle Button */}
       <div className="flex flex-row gap-4 justify-center my-8">
         <div className="flex flex-row">
-          <label className=" font-bold text-2xl">NPS Applicable</label>
+          <label className=" font-bold text-2xl">NPS </label>
           <input
             type="checkbox"
             className="ml-2 w-8 hover:cursor-pointer"
             checked={NPSApplicable}
+            onChange={(e) => setNPSApplicable((e) => !e)}
+          />
+        </div>
+
+        <div className="flex flex-row">
+          <label className=" font-bold text-2xl">GPF </label>
+          <input
+            type="checkbox"
+            className="ml-2 w-8 hover:cursor-pointer"
+            checked={!NPSApplicable}
             onChange={(e) => setNPSApplicable((e) => !e)}
           />
         </div>
@@ -176,13 +201,17 @@ export default function TotalPositiveSalaryComponent() {
       <SalaryHeader />
 
       {months.map((month) => (
-        <div className="flex flex-row gap-6 text-base font-semibold bg-gray-300">
+        <div
+          className="flex flex-row gap-6 text-base font-semibold bg-gray-300"
+          key={month.id}
+        >
           <div className="text-center py-2 my-2 w-24 ">{month.name}</div>
 
           {/* setting GradePay */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={Gradepay[month.id]}
               onChange={(e) => {
@@ -199,7 +228,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting BasicPay */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={Basicpay[month.id]}
               onChange={(e) => {
@@ -216,7 +246,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting DA% */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={DAPerc[month.id]}
               onChange={(e) => {
@@ -238,7 +269,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting HRA */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={HRA[month.id]}
               onChange={(e) => {
@@ -255,7 +287,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting Bonus */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={Bonus[month.id]}
               onChange={(e) => {
@@ -272,7 +305,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting OtherAllowance */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={OtherAllowance[month.id]}
               onChange={(e) => {
@@ -296,17 +330,16 @@ export default function TotalPositiveSalaryComponent() {
             {Math.round(NPS[month.id])}
           </div>
 
-
           {/* displaying GPF */}
           <div className="text-center py-2 my-2 w-24 ">
             {Math.round(GPF[month.id])}
           </div>
 
-
           {/* setting GIS */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={GIS[month.id]}
               onChange={(e) => {
@@ -323,7 +356,8 @@ export default function TotalPositiveSalaryComponent() {
           {/* setting TDS */}
           <div className="text-center py-2 my-2 w-24 ">
             <input
-              type="number" min="1"
+              type="number"
+              min="0"
               className="w-24 text-center outline-none"
               value={TDS[month.id]}
               onChange={(e) => {
@@ -353,6 +387,13 @@ export default function TotalPositiveSalaryComponent() {
           </div>
         </div>
       ))}
+
+      <ArrearsComponent
+        Basicpay={Basicpay}
+        DAPerc={DAPerc}
+        Arrears={Arrears}
+        NPSApplicable={NPSApplicable}
+      />
     </div>
   );
 }
