@@ -193,7 +193,7 @@ export default function TotalPositiveSalaryComponent() {
           className="flex flex-row text-base font-semibold bg-gray-300"
           key={month.id}
         >
-          <div className="text-center py-2 w-36 bg-pink-200">{month.name}</div>
+          <div className="text-center py-2 w-36 ">{month.name}</div>
 
           {/* setting GradePay */}
           <div className="text-center py-2 w-36 px-4">
