@@ -29,21 +29,21 @@ export default function ArrearsComponent({ Basicpay, DAPerc, Arrears, NPSApplica
 if(NPSApplicable) {
     Arrears.current.Arrear1NPS = Arrears.current.Arrear1 * 0.1;
     Arrears.current.Arrear2NPS = Arrears.current.Arrear2 * 0.1;
+    Arrears.current.Arrear1NPSByEmp = Arrears.current.Arrear1 * .14;
+    Arrears.current.Arrear2NPSByEmp = Arrears.current.Arrear2 * .14;
     Arrears.current.Arrear1GPF = 0;
     Arrears.current.Arrear2GPF = 0;
 } else {
     Arrears.current.Arrear1GPF = Arrears.current.Arrear1 * 0.1;
     Arrears.current.Arrear2GPF = Arrears.current.Arrear2 * 0.1;
+    Arrears.current.Arrear1NPSByEmp = 0;    
+    Arrears.current.Arrear2NPSByEmp = 0;
     Arrears.current.Arrear1NPS = 0;
     Arrears.current.Arrear2NPS = 0;
 }
 
 Arrears.current.Arrear1Total = Arrears.current.Arrear1 - Arrears.current.Arrear1NPS - Arrears.current.Arrear1GPF;
 Arrears.current.Arrear2Total = Arrears.current.Arrear2 - Arrears.current.Arrear2NPS - Arrears.current.Arrear2GPF;
-
-
-Arrears.current.Arrear1NPSByEmp = Arrears.current.Arrear1 * .14;
-Arrears.current.Arrear2NPSByEmp = Arrears.current.Arrear2 * .14;
 
 
   return (
