@@ -178,13 +178,42 @@ export default function TotalPositiveSalaryComponent() {
     BonusGPF: 0,
   });
 
+  // Conditional Rendering
+  const NPSGPFScreen = ({ monthID, NPSApplicable }) => {
+    if (NPSApplicable) {
+      return (
+        <div className="text-center py-2 w-36 px-4 ">
+          {Math.round(NPS[monthID])}
+        </div>
+      );
+    } else {
+      return (
+        <div className="text-center py-2 w-36 px-4 ">
+          {Math.round(GPF[monthID])}
+        </div>
+      );
+    }
+  };
+
+  const EmployeeContributionScreen = ({ monthID, NPSApplicable }) => {
+    if (NPSApplicable) {
+      return (
+        <div className="text-center py-2 w-36 px-4 ">
+          {Math.round(NPSByEmp[monthID])}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <div className="text-center text-4xl my-8 font-semibold">
         Welcome {teacherName}!
       </div>
 
-      <SalaryHeader />
+      <SalaryHeader NPSApplicable={NPSApplicable} />
 
       {months.map((month) => (
         <div
@@ -293,15 +322,8 @@ export default function TotalPositiveSalaryComponent() {
             {Math.round(TotalPositiveSalary[month.id])}
           </div>
 
-          {/* displaying NPS */}
-          <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(NPS[month.id])}
-          </div>
-
-          {/* displaying GPF */}
-          <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(GPF[month.id])}
-          </div>
+          {/* displaying NPS or GPF */}
+          <NPSGPFScreen monthID={month.id} NPSApplicable={NPSApplicable} />
 
           {/* setting GIS */}
           <div className="text-center py-2 w-36 px-4">
@@ -350,14 +372,13 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* displaying NPS By Employer */}
-          <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(NPSByEmp[month.id])}
-          </div>
+          <EmployeeContributionScreen monthID={month.id} NPSApplicable={NPSApplicable} />
+
         </div>
       ))}
 
       <div className="flex flex-row mt-8">
-        <div className="w-[50%] h-40 bg-yellow-100">
+        <div className="w-[60%] h-36 bg-yellow-100">
           <ArrearsComponent
             Basicpay={Basicpay}
             DAPerc={DAPerc}
@@ -365,7 +386,7 @@ export default function TotalPositiveSalaryComponent() {
             NPSApplicable={NPSApplicable}
           />
         </div>
-        <div className="w-[50%] h-40 bg-green-300">
+        <div className="w-[40%] h-36 bg-green-300">
           <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
         </div>
       </div>

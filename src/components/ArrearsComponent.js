@@ -1,4 +1,9 @@
-export default function ArrearsComponent({ Basicpay, DAPerc, Arrears, NPSApplicable}) {
+export default function ArrearsComponent({
+  Basicpay,
+  DAPerc,
+  Arrears,
+  NPSApplicable,
+}) {
   var count = 3;
   var i;
 
@@ -24,59 +29,105 @@ export default function ArrearsComponent({ Basicpay, DAPerc, Arrears, NPSApplica
     }
   }
 
-
-
-if(NPSApplicable) {
+  if (NPSApplicable) {
     Arrears.current.Arrear1NPS = Arrears.current.Arrear1 * 0.1;
     Arrears.current.Arrear2NPS = Arrears.current.Arrear2 * 0.1;
-    Arrears.current.Arrear1NPSByEmp = Arrears.current.Arrear1 * .14;
-    Arrears.current.Arrear2NPSByEmp = Arrears.current.Arrear2 * .14;
+    Arrears.current.Arrear1NPSByEmp = Arrears.current.Arrear1 * 0.14;
+    Arrears.current.Arrear2NPSByEmp = Arrears.current.Arrear2 * 0.14;
     Arrears.current.Arrear1GPF = 0;
     Arrears.current.Arrear2GPF = 0;
-} else {
+  } else {
     Arrears.current.Arrear1GPF = Arrears.current.Arrear1 * 0.1;
     Arrears.current.Arrear2GPF = Arrears.current.Arrear2 * 0.1;
-    Arrears.current.Arrear1NPSByEmp = 0;    
+    Arrears.current.Arrear1NPSByEmp = 0;
     Arrears.current.Arrear2NPSByEmp = 0;
     Arrears.current.Arrear1NPS = 0;
     Arrears.current.Arrear2NPS = 0;
-}
+  }
 
-Arrears.current.Arrear1Total = Arrears.current.Arrear1 - Arrears.current.Arrear1NPS - Arrears.current.Arrear1GPF;
-Arrears.current.Arrear2Total = Arrears.current.Arrear2 - Arrears.current.Arrear2NPS - Arrears.current.Arrear2GPF;
+  Arrears.current.Arrear1Total =
+    Arrears.current.Arrear1 -
+    Arrears.current.Arrear1NPS -
+    Arrears.current.Arrear1GPF;
+  Arrears.current.Arrear2Total =
+    Arrears.current.Arrear2 -
+    Arrears.current.Arrear2NPS -
+    Arrears.current.Arrear2GPF;
 
+  const ArrearsNPSGPFComponent = () => {
+    if (NPSApplicable) {
+      return (
+        <div>
+          <h3 className="text-lg font-bold mt-4">NPS on Arrears </h3>
+          <p className=" font-bold">
+            Arrear 1: {Math.round(Arrears.current.Arrear1NPS)}
+          </p>
+          <p className=" font-bold">
+            Arrear 2: {Math.round(Arrears.current.Arrear2NPS)}
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h3 className="text-lg font-bold mt-4"> GPF on Arrears</h3>
+          <p className=" font-bold">
+            Arrear 1: {Math.round(Arrears.current.Arrear1GPF)}
+          </p>
+          <p className=" font-bold">
+            Arrear 2: {Math.round(Arrears.current.Arrear2GPF)}
+          </p>
+        </div>
+      );
+    }
+  };
+
+  const ArrearsNPSGPFComponentByEmp = () => {
+    if (NPSApplicable) {
+      return (
+        <div>
+          <h3 className="text-lg font-bold mt-4">
+            Employee contribution of NPS on arrear
+          </h3>
+          <p className=" font-bold">
+            Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}
+          </p>
+          <p className=" font-bold">
+            Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp)}
+          </p>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
-    <div className="mt-10 flex flex-row items-center justify-center gap-12 pb-4">
+    <div className="mt-2 flex flex-row items-center justify-around gap-12 pb-4">
       <div>
         <h3 className="text-lg font-bold mt-4">DA Arrears</h3>
-        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1)}</p>
-        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2)}</p>
+        <p className=" font-bold">
+          Arrear 1: {Math.round(Arrears.current.Arrear1)}
+        </p>
+        <p className=" font-bold">
+          Arrear 2: {Math.round(Arrears.current.Arrear2)}
+        </p>
       </div>
 
-      <div>
-        <h3 className="text-lg font-bold mt-4">NPS on Arrears </h3>
-        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPS)}</p>
-        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPS)}</p>
-      </div>
+      <ArrearsNPSGPFComponent />
 
-      <div>
-        <h3 className="text-lg font-bold mt-4"> GPF on Arrears</h3>
-        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1GPF)}</p>
-        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2GPF)}</p>
-      </div>
-      
       <div>
         <h3 className="text-lg font-bold mt-4">Net Payment on arrear</h3>
-        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1Total)}</p>
-        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2Total)}</p>
+        <p className=" font-bold">
+          Arrear 1: {Math.round(Arrears.current.Arrear1Total)}
+        </p>
+        <p className=" font-bold">
+          Arrear 2: {Math.round(Arrears.current.Arrear2Total)}
+        </p>
       </div>
 
-      <div>
-        <h3 className="text-lg font-bold mt-4"> Employee contribution of NPS on arrear</h3>
-        <p className=" font-bold">Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}</p>
-        <p className=" font-bold">Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp)}</p>
-      </div>
+      <ArrearsNPSGPFComponentByEmp />
+
     </div>
   );
 }
