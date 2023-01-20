@@ -14,7 +14,6 @@ export default function TotalOverall(props) {
     TotalNegativeSalary,
     NetSalary,
     NPSByEmp,
-    NPSApplicable,
   } = props;
 
   const totalBasePay = Basicpay.reduce(
