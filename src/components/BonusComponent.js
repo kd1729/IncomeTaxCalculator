@@ -1,18 +1,15 @@
-import React, { useState } from "react";
 
-export default function BonusComponent({ myBonus, NPSApplicable }) {
-  const [Bonus, setBonus] = useState(0);
-  const [BonusGPF, setBonusGPF] = useState(0);
+export default function BonusComponent({ myBonus, setBonus, NPSApplicable }) {
 
   const BonusGPFComponent = () => {
     if (!NPSApplicable) {
       return (
         <div className="flex flex-row">
           <div className="text-xl ml-20">
-            GPF on Bonus: {Math.round(BonusGPF)}
+            GPF on Bonus: {Math.round(myBonus.BonusGPF)}
           </div>
           <div className="text-xl ml-20">
-            Remaining Bonus: {Bonus - Math.round(BonusGPF)}
+            Remaining Bonus: {myBonus.Bonus - Math.round(myBonus.BonusGPF)}
           </div>
         </div>
       );
@@ -30,20 +27,25 @@ export default function BonusComponent({ myBonus, NPSApplicable }) {
           type="number"
           min="0"
           className="w-28 text-xl text-center outline-none "
-          value={Bonus}
+          value={myBonus.Bonus}
           onChange={(e) => {
             setBonus(e.target.value);
-            myBonus.current.Bonus = e.target.value;
+            myBonus.Bonus = e.target.value;
             if (!NPSApplicable) {
-              setBonusGPF(e.target.value * myBonus.current.GPFPerc);
-              myBonus.current.BonusGPF =
-                e.target.value * myBonus.current.GPFPerc;
+              setBonus({
+                ...myBonus,
+                BonusGPF: e.target.value * myBonus.GPFPerc,
+              })
             } else {
-              setBonusGPF(0);
-              myBonus.current.BonusGPF = 0;
-            }
+              setBonus({
+                ...myBonus,
+                BonusGPF: 0,
+            })
+                 
+          }
           }}
         />
+
       </div>
       <BonusGPFComponent />
     </div>

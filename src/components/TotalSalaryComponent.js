@@ -173,7 +173,13 @@ export default function TotalPositiveSalaryComponent() {
     Arrear2NPSByEmp: 0,
   });
 
-  const Bonus = useRef({
+  // const Bonus = useRef({
+  //   Bonus: 0,
+  //   GPFPerc: 0.75,
+  //   BonusGPF: 0,
+  // });
+
+  const [Bonus, setBonus] = useState({
     Bonus: 0,
     GPFPerc: 0.75,
     BonusGPF: 0,
@@ -388,11 +394,11 @@ export default function TotalPositiveSalaryComponent() {
           />
         </div>
         <div className="w-[40%] h-36 bg-green-300">
-          <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
+          <BonusComponent myBonus={Bonus} setBonus={setBonus} NPSApplicable={NPSApplicable} />
         </div>
       </div>
 
-      
+              
       <TotalOverall
         Basicpay={Basicpay}
         DA={DA}
@@ -406,6 +412,7 @@ export default function TotalPositiveSalaryComponent() {
         TDS={TDS}
         Bonus={Bonus}
         TotalNegativeSalary={TotalNegativeSalary}
+        NetSalary={NetSalary}
         NPSByEmp={NPSByEmp}
         NPSApplicable={NPSApplicable}
       />
