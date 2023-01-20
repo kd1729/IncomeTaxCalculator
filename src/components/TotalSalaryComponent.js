@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import SalaryHeader from "./SalaryHeader";
 import ArrearsComponent from "./ArrearsComponent";
 import BonusComponent from "./BonusComponent";
+import TotalOverall from "./TotalOverall";
 
 const months = [
   { id: 0, name: "March-22" },
@@ -390,6 +391,28 @@ export default function TotalPositiveSalaryComponent() {
           <BonusComponent myBonus={Bonus} NPSApplicable={NPSApplicable} />
         </div>
       </div>
+
+      
+      <TotalOverall
+        Basicpay={Basicpay}
+        DA={DA}
+        Arrears={Arrears}
+        HRA={HRA}
+        OtherAllowance={OtherAllowance}
+        TotalPositiveSalary={TotalPositiveSalary}
+        NPS={NPS}
+        GPF={GPF}
+        GIS={GIS}
+        TDS={TDS}
+        Bonus={Bonus}
+        TotalNegativeSalary={TotalNegativeSalary}
+        NPSByEmp={NPSByEmp}
+        NPSApplicable={NPSApplicable}
+      />
+      
+
     </div>
+
+    
   );
 }
