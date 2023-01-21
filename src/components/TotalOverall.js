@@ -91,8 +91,8 @@ export default function TotalOverall(props) {
     parseInt(Math.round(Arrears.current.Arrear2NPSByEmp));
 
   return (
-    <div className=" flex flex-col py-8">
-      <h1 className="text-4xl text-center py-4 text-[#ffffff] font-bold">Total Overall</h1>
+    <div className=" flex flex-col py-4">
+      <h1 className="text-4xl text-center py-8 text-[#ffffff] font-bold">Total Overall</h1>
       <table>
         <thead className="text-xl text-white">
           <tr>
