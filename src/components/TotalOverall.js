@@ -87,39 +87,39 @@ export default function TotalOverall(props) {
     parseInt(Math.round(Arrears.current.Arrear2NPSByEmp));
 
   return (
-    <div className="my-16 flex flex-col   ">
-      <h1 className="text-3xl text-center py-4 font-bold">Total Overall</h1>
+    <div className=" flex flex-col pb-8">
+      <h1 className="text-2xl text-center py-4 font-bold">Total Overall</h1>
       <table>
-        <thead className="text-2xl">
+        <thead className="text-lg text-white">
           <tr>
-            <th className="px-4 font-semibold text-center">Basic Pay</th>
-            <th className="px-4 font-semibold text-center">DA</th>
-            <th className="px-4 font-semibold text-center">HRA</th>
-            <th className="px-4 font-semibold text-center">Other Allowance</th>
-            <th className="px-4 font-semibold text-center">Total Positive Salary</th>
-            <th className="px-4 font-semibold text-center">NPS</th>
-            <th className="px-4 font-semibold text-center">GPF</th>
-            <th className="px-4 font-semibold text-center">GIS</th>
-            <th className="px-4 font-semibold text-center">TDS</th>
-            <th className="px-4 font-semibold text-center">Total Negative Salary</th>
-            <th className="px-4 font-semibold text-center">Net Salary</th>
-            <th className="px-4 font-semibold text-center">Total NPS By Employee</th>
+            <th className="px-4 text-center">Basic Pay</th>
+            <th className="px-4 text-center">DA</th>
+            <th className="px-4 text-center">HRA</th>
+            <th className="px-4 text-center">Other Allowance</th>
+            <th className="px-4 text-center">Total Positive Salary</th>
+            <th className="px-4 text-center">NPS</th>
+            <th className="px-4 text-center">GPF</th>
+            <th className="px-4 text-center">GIS</th>
+            <th className="px-4 text-center">TDS</th>
+            <th className="px-4 text-center">Total Negative Salary</th>
+            <th className="px-4 text-center">Net Salary</th>
+            <th className="px-4 text-center">Total NPS By Employee</th>
           </tr>
         </thead>
-        <tbody className="text-lg">
+        <tbody className="text-lg text-green-200">
           <tr>
-            <td className="px-4 font-semibold text-center">{totalBasePay}</td>
-            <td className="px-4 font-semibold text-center">{totalDA}</td>
-            <td className="px-4 font-semibold text-center">{totalHRA}</td>
-            <td className="px-4 font-semibold text-center">{totalOtherAllowance}</td>
-            <td className="px-4 font-semibold text-center">{totalPositiveSalary}</td>
-            <td className="px-4 font-semibold text-center">{totalNPS}</td>
-            <td className="px-4 font-semibold text-center">{totalGPF}</td>
-            <td className="px-4 font-semibold text-center">{totalGIS}</td>
-            <td className="px-4 font-semibold text-center">{totalTDS}</td>
-            <td className="px-4 font-semibold text-center">{totalNegativeSalary}</td>
-            <td className="px-4 font-semibold text-center">{totalNetSalary}</td>
-            <td className="px-4 font-semibold text-center">{totalNPSByEmp}</td>
+            <td className="px-4 text-center">{totalBasePay}</td>
+            <td className="px-4 text-center">{totalDA}</td>
+            <td className="px-4 text-center">{totalHRA}</td>
+            <td className="px-4 text-center">{totalOtherAllowance}</td>
+            <td className="px-4 text-center">{totalPositiveSalary}</td>
+            <td className="px-4 text-center">{totalNPS}</td>
+            <td className="px-4 text-center">{totalGPF}</td>
+            <td className="px-4 text-center">{totalGIS}</td>
+            <td className="px-4 text-center">{totalTDS}</td>
+            <td className="px-4 text-center">{totalNegativeSalary}</td>
+            <td className="px-4 text-center">{totalNetSalary}</td>
+            <td className="px-4 text-center">{totalNPSByEmp}</td>
           </tr>
         </tbody>
       </table>
