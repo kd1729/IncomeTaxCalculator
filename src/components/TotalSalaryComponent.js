@@ -27,9 +27,7 @@ export default function TotalPositiveSalaryComponent() {
   const NPSApplicable = location.state.NPSApplicable;
   const profile = location.state.profile;
 
-  const [Gradepay, setGradepay] = useState(
-    Array(12).fill(profile.CurrentSalaryGradePay)
-  );
+  const [Gradepay, setGradepay] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const CurrIdxGradepay = useRef(0);
 
   // POSITIVE SALARY
@@ -219,7 +217,7 @@ export default function TotalPositiveSalaryComponent() {
       {months.map((month) => (
         <div
           className={
-            "flex flex-row text-base font-semibold  border-t-2 border-[#cccccc]  " +
+            "flex flex-row text-base font-semibold  border-[#cccccc]  " +
             (month.id % 2 === 0 ? " bg-gray-200 " : "bg-gray-300 ") +
             (month.id === 11 ? "pb-4" : "")
           }

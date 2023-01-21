@@ -74,7 +74,7 @@ export default function DisplayProfile({ profile }) {
                 <div className="text-lg  mr-4 text-[#e9b7ff]">Date of Birth</div>
                 <div className="text-lg  mr-4 text-[#e9b7ff]">First Joining Date</div>
                 <div className="text-lg  mr-4 text-[#e9b7ff]">
-                  Current Grade Pay
+                Receiving Date of <br/>Current Grade Pay
                 </div>
               </div>
               <div className="flex flex-col">
