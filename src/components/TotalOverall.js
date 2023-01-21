@@ -91,27 +91,27 @@ export default function TotalOverall(props) {
     parseInt(Math.round(Arrears.current.Arrear2NPSByEmp));
 
   return (
-    <div className=" flex flex-col pb-8">
-      <h1 className="text-3xl text-center py-4 text-[#dddddd] font-bold">Total Overall</h1>
+    <div className=" flex flex-col py-8">
+      <h1 className="text-4xl text-center py-4 text-[#ffffff] font-bold">Total Overall</h1>
       <table>
-        <thead className="text-lg text-white">
+        <thead className="text-xl text-white">
           <tr>
             <th className="px-4 text-center">Basic Pay</th>
             <th className="px-4 text-center">DA</th>
             <th className="px-4 text-center">HRA</th>
-            <th className="px-4 text-center">Other Allowance</th>
-            <th className="px-4 text-center">Total Positive Salary</th>
+            <th className="px-4 text-center">Others</th>
+            <th className="px-4 text-center">Emoluments</th>
             {NPSApplicable ? (
-              <th className="px-4 text-center">Total NPS</th>
+              <th className="px-4 text-center">NPS</th>
             ) : (
-              <th className="px-4 text-center">Total GPF</th>
+              <th className="px-4 text-center">GPF</th>
             )}
             <th className="px-4 text-center">GIS</th>
             <th className="px-4 text-center">TDS</th>
-            <th className="px-4 text-center">Total Negative Salary</th>
+            <th className="px-4 text-center">Deductions</th>
             <th className="px-4 text-center">Net Salary</th>
             {NPSApplicable ? (
-              <th className="px-4 text-center">Total NPS By Employee</th>
+              <th className="px-4 text-center">Employer contr. of NPS</th>
             ) : null}
           </tr>
         </thead>

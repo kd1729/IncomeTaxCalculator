@@ -27,7 +27,9 @@ export default function TotalPositiveSalaryComponent() {
   const NPSApplicable = location.state.NPSApplicable;
   const profile = location.state.profile;
 
-  const [Gradepay, setGradepay] = useState(Array(12).fill(profile.CurrentSalaryGradePay));
+  const [Gradepay, setGradepay] = useState(
+    Array(12).fill(profile.CurrentSalaryGradePay)
+  );
   const CurrIdxGradepay = useRef(0);
 
   // POSITIVE SALARY
@@ -210,14 +212,17 @@ export default function TotalPositiveSalaryComponent() {
 
   return (
     <div className="flex flex-col">
-
       <DisplayProfile profile={profile} />
 
       <SalaryHeader NPSApplicable={NPSApplicable} />
 
       {months.map((month) => (
         <div
-          className="flex flex-row text-base font-semibold bg-gray-300"
+          className={
+            "flex flex-row text-base font-semibold  border-t-2 border-[#cccccc]  " +
+            (month.id % 2 === 0 ? " bg-gray-200 " : "bg-gray-300 ") +
+            (month.id === 11 ? "pb-4" : "")
+          }
           key={month.id}
         >
           <div className="text-center py-2 w-36 ">{month.name}</div>
@@ -380,7 +385,7 @@ export default function TotalPositiveSalaryComponent() {
       ))}
 
       <div className="flex flex-row">
-        <div className="w-[60%] h-36 bg-yellow-100 px-4">
+        <div className="w-[55%]">
           <ArrearsComponent
             Basicpay={Basicpay}
             DAPerc={DAPerc}
@@ -388,7 +393,7 @@ export default function TotalPositiveSalaryComponent() {
             NPSApplicable={NPSApplicable}
           />
         </div>
-        <div className="w-[40%] h-36 bg-green-300">
+        <div className="w-[45%]">
           <BonusComponent
             myBonus={Bonus}
             setBonus={setBonus}

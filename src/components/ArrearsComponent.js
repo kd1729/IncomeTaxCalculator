@@ -87,7 +87,7 @@ export default function ArrearsComponent({
       return (
         <div>
           <h3 className="text-lg font-bold mt-4">
-            Employee contribution of NPS on arrear
+          Employer contr. of NPS
           </h3>
           <p className=" font-bold">
             Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}
@@ -103,7 +103,7 @@ export default function ArrearsComponent({
   };
 
   return (
-    <div className="mt-2 flex flex-row items-center justify-around gap-12 pb-4">
+    <div className=" flex flex-row items-center justify-around gap-12 pb-4 bg-[#f5f5d6]">
       <div>
         <h3 className="text-lg font-bold mt-4">DA Arrears</h3>
         <p className=" font-bold">
@@ -116,7 +116,7 @@ export default function ArrearsComponent({
 
       <ArrearsNPSGPFComponent />
 
-      <div>
+      {/* <div>
         <h3 className="text-lg font-bold mt-4">Net Payment on arrear</h3>
         <p className=" font-bold">
           Arrear 1: {Math.round(Arrears.current.Arrear1Total)}
@@ -124,7 +124,7 @@ export default function ArrearsComponent({
         <p className=" font-bold">
           Arrear 2: {Math.round(Arrears.current.Arrear2Total)}
         </p>
-      </div>
+      </div> */}
 
       <ArrearsNPSGPFComponentByEmp />
 
