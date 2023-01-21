@@ -50,12 +50,6 @@ export default function TotalOverall(props) {
     parseInt(Math.round(Arrears.current.Arrear1NPS)) +
     parseInt(Math.round(Arrears.current.Arrear2NPS));
 
-  console.log(NPS);
-  console.log(
-    NPS.reduce((a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)), 0),
-    Arrears.current.Arrear1NPS,
-    Arrears.current.Arrear2NPS
-  );
 
   const totalGPF =
     GPF.reduce((a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)), 0) +

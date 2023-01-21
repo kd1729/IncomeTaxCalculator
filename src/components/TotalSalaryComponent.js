@@ -24,7 +24,7 @@ const months = [
 export default function TotalPositiveSalaryComponent() {
   const location = useLocation();
   const NPSApplicable = location.state.NPSApplicable;
-  const teacherName = location.state.TeacherName;
+  const profile = location.state.profile;
 
   const [Gradepay, setGradepay] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -217,7 +217,99 @@ export default function TotalPositiveSalaryComponent() {
   return (
     <div className="flex flex-col">
       <div className="text-center text-4xl my-8 font-semibold">
-        Welcome {teacherName}!
+        Welcome {profile.TeacherName}!
+      </div>
+      <div>
+        <div className="flex flex-row justify-center">
+          <div className="flex flex-col w-1/2">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">MSID Number</div>
+                <div className="text-xl font-semibold">Teacher Name</div>
+                <div className="text-xl font-semibold">Teacher Post</div>
+                <div className="text-xl font-semibold">School Name</div>
+                <div className="text-xl font-semibold">Vikas Khand</div>
+                <div className="text-xl font-semibold">District</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">
+                  {profile.MSIDNumber}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.TeacherName}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.TeacherPost}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.SchoolName}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.VikasKhand}
+                </div>
+                <div className="text-xl font-semibold">{profile.District}</div>
+              </div>
+            </div>
+            <div className="flex flex-row justify-between mt-8">
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">PAN Number</div>
+                <div className="text-xl font-semibold">PRAN Number</div>
+                <div className="text-xl font-semibold">Aadhar Number</div>
+                <div className="text-xl font-semibold">Phone Number</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">{profile.PANNumber}</div>
+                <div className="text-xl font-semibold">
+                  {profile.PRANNumber}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.AadharNumber}
+                </div>
+                <div className="text-xl font-semibold">{profile.Phone}</div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col w-1/2">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">Bank Name</div>
+                <div className="text-xl font-semibold">Bank Account Number</div>
+                <div className="text-xl font-semibold">IFSC Code</div>
+                <div className="text-xl font-semibold">Branch Name</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">{profile.BankName}</div>
+                <div className="text-xl font-semibold">
+                  {profile.BankAccountNumber}
+                </div>
+                <div className="text-xl font-semibold">{profile.IFSCCode}</div>
+                <div className="text-xl font-semibold">
+                  {profile.BranchName}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row justify-between mt-8">
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">Date of Birth</div>
+                <div className="text-xl font-semibold">First Joining Date</div>
+                <div className="text-xl font-semibold">
+                  Current Salary Grade Pay
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-xl font-semibold">
+                  {profile.DateOfBirth}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.FirstJoiningDate}
+                </div>
+                <div className="text-xl font-semibold">
+                  {profile.CurrentSalaryGradePay}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <SalaryHeader NPSApplicable={NPSApplicable} />
@@ -379,8 +471,10 @@ export default function TotalPositiveSalaryComponent() {
           </div>
 
           {/* displaying NPS By Employer */}
-          <EmployeeContributionScreen monthID={month.id} NPSApplicable={NPSApplicable} />
-
+          <EmployeeContributionScreen
+            monthID={month.id}
+            NPSApplicable={NPSApplicable}
+          />
         </div>
       ))}
 
@@ -394,11 +488,14 @@ export default function TotalPositiveSalaryComponent() {
           />
         </div>
         <div className="w-[40%] h-36 bg-green-300">
-          <BonusComponent myBonus={Bonus} setBonus={setBonus} NPSApplicable={NPSApplicable} />
+          <BonusComponent
+            myBonus={Bonus}
+            setBonus={setBonus}
+            NPSApplicable={NPSApplicable}
+          />
         </div>
       </div>
 
-              
       <TotalOverall
         Basicpay={Basicpay}
         DA={DA}
@@ -416,10 +513,6 @@ export default function TotalPositiveSalaryComponent() {
         NPSByEmp={NPSByEmp}
         NPSApplicable={NPSApplicable}
       />
-      
-
     </div>
-
-    
   );
 }
