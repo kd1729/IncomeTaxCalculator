@@ -37,8 +37,8 @@ export default function ArrearsComponent({
     Arrears.current.Arrear1GPF = 0;
     Arrears.current.Arrear2GPF = 0;
   } else {
-    Arrears.current.Arrear1GPF = Arrears.current.Arrear1 * 0.1;
-    Arrears.current.Arrear2GPF = Arrears.current.Arrear2 * 0.1;
+    Arrears.current.Arrear1GPF = Arrears.current.Arrear1;
+    Arrears.current.Arrear2GPF = Arrears.current.Arrear2;
     Arrears.current.Arrear1NPSByEmp = 0;
     Arrears.current.Arrear2NPSByEmp = 0;
     Arrears.current.Arrear1NPS = 0;
