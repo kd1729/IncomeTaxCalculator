@@ -27,9 +27,7 @@ export default function TotalPositiveSalaryComponent() {
   const NPSApplicable = location.state.NPSApplicable;
   const profile = location.state.profile;
 
-  const [Gradepay, setGradepay] = useState([
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  ]);
+  const [Gradepay, setGradepay] = useState(Array(12).fill(profile.CurrentSalaryGradePay));
   const CurrIdxGradepay = useRef(0);
 
   // POSITIVE SALARY

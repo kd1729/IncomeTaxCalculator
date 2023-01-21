@@ -14,6 +14,7 @@ export default function TotalOverall(props) {
     TotalNegativeSalary,
     NetSalary,
     NPSByEmp,
+    NPSApplicable,
   } = props;
 
   const totalBasePay = Basicpay.reduce(
@@ -50,11 +51,11 @@ export default function TotalOverall(props) {
     parseInt(Math.round(Arrears.current.Arrear1NPS)) +
     parseInt(Math.round(Arrears.current.Arrear2NPS));
 
-
   const totalGPF =
     GPF.reduce((a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)), 0) +
     parseInt(Math.round(Arrears.current.Arrear1GPF)) +
-    parseInt(Math.round(Arrears.current.Arrear2GPF));
+    parseInt(Math.round(Arrears.current.Arrear2GPF)) +
+    parseInt(Math.round(Bonus.BonusGPF));
 
   const totalGIS = GIS.reduce(
     (a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)),
@@ -71,12 +72,15 @@ export default function TotalOverall(props) {
     0
   );
 
-  const totalNetSalary = NetSalary.reduce(
-    (a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)),
-    0
-  ) + parseInt(Math.round(Bonus.Bonus)) - parseInt(Math.round(Bonus.BonusGPF))
-  + parseInt(Math.round(Arrears.current.Arrear1Total)) + parseInt(Math.round(Arrears.current.Arrear2Total));
-
+  const totalNetSalary =
+    NetSalary.reduce(
+      (a, b) => parseInt(Math.round(a)) + parseInt(Math.round(b)),
+      0
+    ) +
+    parseInt(Math.round(Bonus.Bonus)) -
+    parseInt(Math.round(Bonus.BonusGPF)) +
+    parseInt(Math.round(Arrears.current.Arrear1Total)) +
+    parseInt(Math.round(Arrears.current.Arrear2Total));
 
   const totalNPSByEmp =
     NPSByEmp.reduce(
@@ -88,7 +92,7 @@ export default function TotalOverall(props) {
 
   return (
     <div className=" flex flex-col pb-8">
-      <h1 className="text-2xl text-center py-4 font-bold">Total Overall</h1>
+      <h1 className="text-3xl text-center py-4 text-[#dddddd] font-bold">Total Overall</h1>
       <table>
         <thead className="text-lg text-white">
           <tr>
@@ -97,13 +101,18 @@ export default function TotalOverall(props) {
             <th className="px-4 text-center">HRA</th>
             <th className="px-4 text-center">Other Allowance</th>
             <th className="px-4 text-center">Total Positive Salary</th>
-            <th className="px-4 text-center">NPS</th>
-            <th className="px-4 text-center">GPF</th>
+            {NPSApplicable ? (
+              <th className="px-4 text-center">Total NPS</th>
+            ) : (
+              <th className="px-4 text-center">Total GPF</th>
+            )}
             <th className="px-4 text-center">GIS</th>
             <th className="px-4 text-center">TDS</th>
             <th className="px-4 text-center">Total Negative Salary</th>
             <th className="px-4 text-center">Net Salary</th>
-            <th className="px-4 text-center">Total NPS By Employee</th>
+            {NPSApplicable ? (
+              <th className="px-4 text-center">Total NPS By Employee</th>
+            ) : null}
           </tr>
         </thead>
         <tbody className="text-lg text-green-200">
@@ -113,13 +122,19 @@ export default function TotalOverall(props) {
             <td className="px-4 text-center">{totalHRA}</td>
             <td className="px-4 text-center">{totalOtherAllowance}</td>
             <td className="px-4 text-center">{totalPositiveSalary}</td>
-            <td className="px-4 text-center">{totalNPS}</td>
-            <td className="px-4 text-center">{totalGPF}</td>
+            {NPSApplicable ? (
+              <td className="px-4 text-center">{totalNPS}</td>
+            ) : (
+              <td className="px-4 text-center">{totalGPF}</td>
+            )}
+
             <td className="px-4 text-center">{totalGIS}</td>
             <td className="px-4 text-center">{totalTDS}</td>
             <td className="px-4 text-center">{totalNegativeSalary}</td>
             <td className="px-4 text-center">{totalNetSalary}</td>
-            <td className="px-4 text-center">{totalNPSByEmp}</td>
+            {NPSApplicable ? (
+              <td className="px-4 text-center">{totalNPSByEmp}</td>
+            ) : null}
           </tr>
         </tbody>
       </table>

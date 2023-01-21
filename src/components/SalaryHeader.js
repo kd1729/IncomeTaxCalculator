@@ -14,8 +14,8 @@ export default function SalaryHeader({ NPSApplicable }) {
   const EmployeeContribution = () => {
     if (NPSApplicable) {
       return (
-        <div className="text-center text-black px-4 py-2 w-36 h-24 ">
-          Employee contribution of NPS
+        <div className="text-center text-black px-4 py-2 w-max-36 h-24 ">
+          Employer contr. of NPS
         </div>
       );
     } else {
@@ -24,7 +24,7 @@ export default function SalaryHeader({ NPSApplicable }) {
   };
 
   return (
-    <div className="flex flex-row text-lg font-bold bg-gray-300">
+    <div className="flex flex-row font-bold bg-gray-300">
       <div className="text-center text-blue-600 px-4 py-2 w-36 h-24 ">
         Month
       </div>
@@ -59,7 +59,7 @@ export default function SalaryHeader({ NPSApplicable }) {
       </div>
 
       {/*  total */}
-      <div className="text-center text-blue-600 px-4 py-2 w-36 h-24  text-2xl">
+      <div className="text-center text-blue-600 px-4 py-2 w-36 h-24">
         Net Payment
       </div>
       <EmployeeContribution />
