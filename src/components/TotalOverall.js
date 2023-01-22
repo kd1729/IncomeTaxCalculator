@@ -117,23 +117,23 @@ export default function TotalOverall(props) {
         </thead>
         <tbody className="text-lg text-green-200">
           <tr>
-            <td className="px-4 text-center">{totalBasePay}</td>
-            <td className="px-4 text-center">{totalDA}</td>
-            <td className="px-4 text-center">{totalHRA}</td>
-            <td className="px-4 text-center">{totalOtherAllowance}</td>
-            <td className="px-4 text-center">{totalPositiveSalary}</td>
+            <td className="px-4 text-center">{totalBasePay || 0}</td>
+            <td className="px-4 text-center">{totalDA || 0}</td>
+            <td className="px-4 text-center">{totalHRA || 0}</td>
+            <td className="px-4 text-center">{totalOtherAllowance || 0}</td>
+            <td className="px-4 text-center">{totalPositiveSalary || 0}</td>
             {NPSApplicable ? (
-              <td className="px-4 text-center">{totalNPS}</td>
+              <td className="px-4 text-center">{totalNPS || 0}</td>
             ) : (
-              <td className="px-4 text-center">{totalGPF}</td>
+              <td className="px-4 text-center">{totalGPF || 0}</td>
             )}
 
-            <td className="px-4 text-center">{totalGIS}</td>
-            <td className="px-4 text-center">{totalTDS}</td>
-            <td className="px-4 text-center">{totalNegativeSalary}</td>
-            <td className="px-4 text-center">{totalNetSalary}</td>
+            <td className="px-4 text-center">{totalGIS || 0}</td>
+            <td className="px-4 text-center">{totalTDS || 0}</td>
+            <td className="px-4 text-center">{totalNegativeSalary || 0}</td>
+            <td className="px-4 text-center">{totalNetSalary || 0}</td>
             {NPSApplicable ? (
-              <td className="px-4 text-center">{totalNPSByEmp}</td>
+              <td className="px-4 text-center">{totalNPSByEmp || 0}</td>
             ) : null}
           </tr>
         </tbody>

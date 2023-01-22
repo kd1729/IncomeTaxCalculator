@@ -184,13 +184,13 @@ export default function TotalPositiveSalaryComponent() {
     if (NPSApplicable) {
       return (
         <div className="text-center py-2 w-36 px-4 ">
-          {Math.round(NPS[monthID])}
+          {Math.round(NPS[monthID]) || 0}
         </div>
       );
     } else {
       return (
         <div className="text-center py-2 w-36 px-4 ">
-          {Math.round(GPF[monthID])}
+          {Math.round(GPF[monthID]) || 0}
         </div>
       );
     }
@@ -200,7 +200,7 @@ export default function TotalPositiveSalaryComponent() {
     if (NPSApplicable) {
       return (
         <div className="text-center py-2 w-36 px-4 ">
-          {Math.round(NPSByEmp[monthID])}
+          {Math.round(NPSByEmp[monthID]) || 0}
         </div>
       );
     } else {
@@ -281,7 +281,7 @@ export default function TotalPositiveSalaryComponent() {
 
           {/* displaying DA */}
           <div className="text-center py-2 w-36 px-4">
-            {Math.round(DA[month.id])}
+            {Math.round(DA[month.id]) || 0}
           </div>
 
           {/* setting HRA */}
@@ -322,7 +322,7 @@ export default function TotalPositiveSalaryComponent() {
 
           {/* displaying TotalPositiveSalary */}
           <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(TotalPositiveSalary[month.id])}
+            {Math.round(TotalPositiveSalary[month.id]) || 0}
           </div>
 
           {/* displaying NPS or GPF */}
@@ -356,9 +356,10 @@ export default function TotalPositiveSalaryComponent() {
               onChange={(e) => {
                 CurrIdxTDS.current = month.id;
                 TDS[CurrIdxTDS.current] = e.target.value;
-                for (let i = CurrIdxTDS.current + 1; i < 12; i++) {
+                for (let i = CurrIdxTDS.current + 1; i < 11; i++) {
                   TDS[i] = e.target.value;
                 }
+                TDS[11] = 0;  
                 setTDS([...TDS]);
               }}
             />
@@ -366,12 +367,12 @@ export default function TotalPositiveSalaryComponent() {
 
           {/* displaying totalNegative */}
           <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(TotalNegativeSalary[month.id])}
+            {Math.round(TotalNegativeSalary[month.id]) || 0}
           </div>
 
           {/* displaying NetSalary */}
           <div className="text-center py-2 w-36 px-4 ">
-            {Math.round(NetSalary[month.id])}
+            {Math.round(NetSalary[month.id]) || 0}
           </div>
 
           {/* displaying NPS By Employer */}

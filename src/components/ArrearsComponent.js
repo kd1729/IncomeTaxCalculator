@@ -60,10 +60,10 @@ export default function ArrearsComponent({
         <div>
           <h3 className="text-lg font-bold mt-4">NPS on Arrears </h3>
           <p className=" font-bold">
-            Arrear 1: {Math.round(Arrears.current.Arrear1NPS)}
+            Arrear 1: {Math.round(Arrears.current.Arrear1NPS) || 0}
           </p>
           <p className=" font-bold">
-            Arrear 2: {Math.round(Arrears.current.Arrear2NPS)}
+            Arrear 2: {Math.round(Arrears.current.Arrear2NPS) || 0}
           </p>
         </div>
       );
@@ -72,10 +72,10 @@ export default function ArrearsComponent({
         <div>
           <h3 className="text-lg font-bold mt-4"> GPF on Arrears</h3>
           <p className=" font-bold">
-            Arrear 1: {Math.round(Arrears.current.Arrear1GPF)}
+            Arrear 1: {Math.round(Arrears.current.Arrear1GPF) || 0}
           </p>
           <p className=" font-bold">
-            Arrear 2: {Math.round(Arrears.current.Arrear2GPF)}
+            Arrear 2: {Math.round(Arrears.current.Arrear2GPF) || 0}
           </p>
         </div>
       );
@@ -90,10 +90,10 @@ export default function ArrearsComponent({
           Employer contr. of NPS
           </h3>
           <p className=" font-bold">
-            Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp)}
+            Arrear 1: {Math.round(Arrears.current.Arrear1NPSByEmp) || 0}
           </p>
           <p className=" font-bold">
-            Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp)}
+            Arrear 2: {Math.round(Arrears.current.Arrear2NPSByEmp) || 0}
           </p>
         </div>
       );
@@ -107,10 +107,10 @@ export default function ArrearsComponent({
       <div>
         <h3 className="text-lg font-bold mt-4">DA Arrears</h3>
         <p className=" font-bold">
-          Arrear 1: {Math.round(Arrears.current.Arrear1)}
+          Arrear 1: {Math.round(Arrears.current.Arrear1) || 0}
         </p>
         <p className=" font-bold">
-          Arrear 2: {Math.round(Arrears.current.Arrear2)}
+          Arrear 2: {Math.round(Arrears.current.Arrear2) || 0}
         </p>
       </div>
 
