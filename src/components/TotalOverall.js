@@ -1,4 +1,9 @@
+import {useNavigate} from 'react-router-dom';
+
 export default function TotalOverall(props) {
+
+  const navigate = useNavigate();
+
   const {
     Basicpay,
     DA,
@@ -138,6 +143,34 @@ export default function TotalOverall(props) {
           </tr>
         </tbody>
       </table>
+      
+      <div className=" flex justify-center">
+        <button
+          className="bg-blue-700 hover:bg-blue-900 text-white text-2xl font-semibold py-4 px-8 rounded my-8 w-60"
+          onClick={() => {
+            navigate("/tax", {
+              state: {
+                totalBasePay,
+                totalDA,
+                totalHRA,
+                totalOtherAllowance,
+                totalPositiveSalary,
+                totalNPS,
+                totalGPF,
+                totalGIS,
+                totalNegativeSalary,
+                totalNetSalary,
+                totalTDS,
+                totalNPSByEmp,
+                NPSApplicable,
+              },
+            });
+          }}
+        >
+          Calculate Tax
+        </button>
+      </div>
+
     </div>
   );
 }
