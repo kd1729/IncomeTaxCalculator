@@ -274,6 +274,39 @@ export default function TaxCalculator() {
     setd8(d1 + d2 + d3 + d4 + d5 + d6 + d7);
   }, [sheshDhanRashi, varisthaNagrik]);
 
+  const [_87a, set_87a] = useState(0);
+  useEffect(() => {
+    if(taxSchemeOld && c3 === 0){
+      set_87a(c2);
+    }else if(!taxSchemeOld && d3 === 0){
+      set_87a(d2);
+    }else{
+      set_87a(0);
+    }
+  }, [taxSchemeOld, c3, d3, c2, d2]);
+
+  const [section89, setSection89] = useState(0);
+
+  const [F, setF] = useState(0);
+  const [G, setG] = useState(0);
+  const [H, setH] = useState(0);
+  const [I, setI] = useState(0);
+  const [J, setJ] = useState(0);
+
+  useEffect(() => {
+    setG(0.04 * F)
+  }, [F]);
+  useEffect(() => {
+    setH(F + G)
+  }, [F, G]);
+  useEffect(() => {
+    setI(state.totalTDS)
+  }, [state.totalTDS]);
+  useEffect(() => {
+    setJ(H-I);
+  }, [H, I]);
+
+
   return (
     <div className="text-black">
       <div>
@@ -631,6 +664,35 @@ export default function TaxCalculator() {
           <div>(8) कुल आयकर (क्रम (1) से (7) तक)</div>
           <div>{d8}</div>
         </div>
+      </div>
+
+      <div className="grid grid-cols-2">
+        <div>
+          कर योग्य आय बिन्दु(7) में 5 लाख तक होने पर धारा 87A के अन्तर्गत कर में
+          छूट
+        </div>
+        <div>{_87a}</div>
+        <div>Section 89</div>
+        <div>
+          <input
+            type="number"
+            className="w-32 outline-none border-2 border-slate-600"
+            defaultValue={0}
+            value={section89}
+            onChange={(e) => setSection89(e.target.value)}
+          />
+        </div>
+
+        <div>शेष आयकर(_____व्यवस्था से लाभकारी)</div>
+        <div>{F}</div>
+        <div>उपकर:- शेष आयकर(F) पर 4%</div>
+        <div>{G}</div>
+        <div>सकल देय आयकर [(F)+(G)]</div>
+        <div>{H}</div>
+        <div>कुल मासिक आयकर कटौती (TDS)</div>
+        <div>{I}</div>
+        <div>शेष देय आयकर [(H)-(I)] ( अंतिम वेतन से कटौती हेतु)</div>
+        <div>{J}</div>
       </div>
     </div>
   );
