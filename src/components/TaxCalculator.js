@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 export default function TaxCalculator() {
   const location = useLocation();
   const { state } = location;
-  console.log(state);
 
   const [taxSchemeOld, setTaxSchemeOld] = useState(true);
 
@@ -19,31 +18,36 @@ export default function TaxCalculator() {
   const [tutionFee, setTutionFee] = useState(0);
   const [homeLoanPrincipal, setHomeLoanPrincipal] = useState(0);
   const [Others, setOthers] = useState(0);
-  const [total5A, setTotal5A] = useState(0);
-
+  
   useEffect(() => {
     setSakalYogPraptiyan(
       parseInt(state.totalPositiveSalary) +
-        parseInt(state.totalNPSByEmp) +
+      parseInt(state.totalNPSByEmp) +
         parseInt(interestHomeOther) || 0
-    );
-  }, [state, interestHomeOther]);
-
+        );
+      }, [state, interestHomeOther]);
+      
   const [_b1, set_b1] = useState(0);
   useEffect(() => {
     set_b1(sakalYogPraptiyan - state.totalNPSByEmp || 0);
   }, [sakalYogPraptiyan, state.totalNPSByEmp]);
-
+      
+  const [total5A, setTotal5A] = useState(0);
   useEffect(() => {
     setTotal5A(
-      parseInt(PPFNSCFD) +
+      Math.min(
+        parseInt(state.totalGPF) +
+        parseInt(state.totalGIS) +
+        parseInt(PPFNSCFD) +
         parseInt(LICPLI) +
         parseInt(sukanyaSamriddhi) +
         parseInt(tutionFee) +
         parseInt(homeLoanPrincipal) +
-        parseInt(Others) || 0
+        parseInt(Others) || 0, 150000)
     );
   }, [
+    state.totalGPF,
+    state.totalGIS,
     PPFNSCFD,
     LICPLI,
     sukanyaSamriddhi,
@@ -77,7 +81,7 @@ export default function TaxCalculator() {
   const [_5a5, set_5a5] = useState(0);
 
   useEffect(() => {
-    set_5a1(Math.min(150000, total5A));
+    set_5a1(total5A);
   }, [total5A]);
   useEffect(() => {
     set_5a2((state.totalNPS >= 50000 ? state.totalNPS - 50000 : 0) || 0);
@@ -149,9 +153,8 @@ export default function TaxCalculator() {
     // (3) 5 लाख से ऊपर 10 लाख तक 20%
     // (4) 10 लाख से ऊपर 30%
     setc1(0);
-    var y = varisthaNagrik ? 250000 : 300000;
+    var y = !varisthaNagrik ? 250000 : 300000;
     var rem = sheshDhanRashi - y;
-
     if (rem > 0) {
       if (rem > 500000 - y) {
         setc2(0.05 * (500000 - y));
@@ -203,8 +206,8 @@ export default function TaxCalculator() {
     // (6) 12.5 लाख से ऊपर 15 लाख तक 25%
     // (7) 15 लाख से ऊपर 30%
     setd1(0);
-    var y = varisthaNagrik ? 250000 : 300000;
-    var rem = sheshDhanRashi - y;
+    var y = !varisthaNagrik ? 250000 : 300000;
+    var rem = (state.totalPositiveSalary) - y;
     if (rem > 0) {
       if (rem > 500000 - y) {
         setd2(0.05 * (500000 - y));
@@ -293,6 +296,9 @@ export default function TaxCalculator() {
   const [I, setI] = useState(0);
   const [J, setJ] = useState(0);
 
+  useEffect(() => {
+    setF(Math.min(c5, d8));
+  }, [c5, d8]);
   useEffect(() => {
     setG(0.04 * F)
   }, [F]);
@@ -609,6 +615,10 @@ export default function TaxCalculator() {
               (6) सकल कटौती योग
             </div>
             <div>{totalKautati}</div>
+            <div>
+              Shesh Dhan Rashi
+            </div>
+            <div>{sheshDhanRashi}</div>
           </div>
         </div>
       </div>
@@ -672,6 +682,10 @@ export default function TaxCalculator() {
           छूट
         </div>
         <div>{_87a}</div>
+        
+
+        <div>शेष आयकर(_____व्यवस्था से लाभकारी)</div>
+        <div>{F}</div>
         <div>Section 89</div>
         <div>
           <input
@@ -682,9 +696,8 @@ export default function TaxCalculator() {
             onChange={(e) => setSection89(e.target.value)}
           />
         </div>
-
-        <div>शेष आयकर(_____व्यवस्था से लाभकारी)</div>
-        <div>{F}</div>
+        <div>Balance Tax</div>
+        <div>{F - section89}</div>
         <div>उपकर:- शेष आयकर(F) पर 4%</div>
         <div>{G}</div>
         <div>सकल देय आयकर [(F)+(G)]</div>
