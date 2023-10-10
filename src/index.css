@@ -2,7 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body{
-    background-color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    background-color: #737373;
+    background-color: #ffeddb;
+  
+    /* padding: 5px; */
+    /* font-family: 'Roboto', sans-serif; */
+}
+.nps--class{
+    background: #eabb95;
+    padding: 15px 14px 10px 16px;
+    color: #2c2f34d3 !important;
+    border-radius: 10px;
+      font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 3rem;
+}
+.gpf--class{
+    background: #eabb95;
+    padding: 15px 14px 10px 16px;
+    color: #2c2f34d3 !important;
+    border-radius: 10px;
+      font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 3rem;
+}
+
+.teacher--class{
+   margin-bottom: 1rem;
+}
+.teacher-name--class{
+    background: #eabb95;
+    padding: 10px  14px;
+    color: #2c2f34d3 !important;
+    border-radius: 10px;
+    margin-right: 1rem;
+    
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+ 
+}
+.label--class{
+    background: #f3d4ba;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+font-weight: bold;
+    color: #2c2f34dc !important;
+
+}
+
+.submit-button--class{
+ background: #eabb95;
+    color: #2c2f34da !important;
+    font-family: 'Bebas Neue', sans-serif;
+font-size: 3rem;
+font-weight: bold;
+padding: 12px 30px 8px 30px;
+letter-spacing: 4px;
+border-radius: 10px;
+transition-duration: 300ms;
+margin-bottom: 1rem;
+}
+.submit-button--class:hover{
+ background: #e7aa78;
+    color: #2c2f34f0 !important;
+letter-spacing: 8px;
+
 }
