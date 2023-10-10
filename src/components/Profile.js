@@ -33,6 +33,8 @@ export default function Profile() {
           <label className=" font-bold text-3xl text-white nps--class">
             NPS{" "}
           </label>
+
+          <label className=" font-bold text-3xl text-black">NPS </label>
           <input
             type="checkbox"
             className="ml-2 w-8 hover:cursor-pointer checkbox--class"
@@ -45,6 +47,7 @@ export default function Profile() {
           <label className=" font-bold text-3xl text-white gpf--class">
             GPF{" "}
           </label>
+          <label className=" font-bold text-3xl text-black">GPF </label>
           <input
             type="checkbox"
             className="ml-2 w-8 hover:cursor-pointer checkbox--class"
@@ -53,7 +56,7 @@ export default function Profile() {
           />
         </div>
       </div>
-      <div className="flex justify-center mb-24">
+      <div className="flex justify-center mb-16">
         <NameComponent
           heading="Teacher Name"
           profile={profile}
@@ -62,7 +65,7 @@ export default function Profile() {
         />
       </div>
 
-      <div className="grid grid-rows-2 grid-cols-2 place-items-center gap-y-24">
+      <div className="grid grid-cols-4 place-items-center gap-12">
         <div className="flex flex-col gap-4">
           <NameComponent
             heading="MS ID Number"

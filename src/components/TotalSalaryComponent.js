@@ -27,7 +27,9 @@ export default function TotalPositiveSalaryComponent() {
   const NPSApplicable = location.state.NPSApplicable;
   const profile = location.state.profile;
 
-  const [Gradepay, setGradepay] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [Gradepay, setGradepay] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
   const CurrIdxGradepay = useRef(0);
 
   // POSITIVE SALARY
@@ -359,7 +361,7 @@ export default function TotalPositiveSalaryComponent() {
                 for (let i = CurrIdxTDS.current + 1; i < 11; i++) {
                   TDS[i] = e.target.value;
                 }
-                TDS[11] = 0;  
+                TDS[11] = 0;
                 setTDS([...TDS]);
               }}
             />
@@ -418,6 +420,8 @@ export default function TotalPositiveSalaryComponent() {
         NPSByEmp={NPSByEmp}
         NPSApplicable={NPSApplicable}
       />
+
+      
     </div>
   );
 }
