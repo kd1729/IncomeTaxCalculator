@@ -1,4 +1,9 @@
+import {useNavigate} from 'react-router-dom';
+
 export default function TotalOverall(props) {
+
+  const navigate = useNavigate();
+
   const {
     Basicpay,
     DA,
@@ -92,9 +97,9 @@ export default function TotalOverall(props) {
 
   return (
     <div className=" flex flex-col py-4">
-      <h1 className="text-4xl text-center py-8 text-[#ffffff] font-bold">Total Overall</h1>
+      <h1 className="text-4xl text-center py-8 text-black font-bold">Total Overall</h1>
       <table>
-        <thead className="text-xl text-white">
+        <thead className="text-xl text-black">
           <tr>
             <th className="px-4 text-center">Basic Pay</th>
             <th className="px-4 text-center">DA</th>
@@ -115,7 +120,7 @@ export default function TotalOverall(props) {
             ) : null}
           </tr>
         </thead>
-        <tbody className="text-lg text-green-200">
+        <tbody className="text-lg text-green-800">
           <tr>
             <td className="px-4 text-center">{totalBasePay || 0}</td>
             <td className="px-4 text-center">{totalDA || 0}</td>
@@ -138,6 +143,34 @@ export default function TotalOverall(props) {
           </tr>
         </tbody>
       </table>
+      
+      <div className=" flex justify-center">
+        <button
+          className="bg-blue-700 hover:bg-blue-900 text-white text-2xl font-semibold py-4 px-8 rounded my-8 w-60"
+          onClick={() => {
+            navigate("/tax", {
+              state: {
+                totalBasePay,
+                totalDA,
+                totalHRA,
+                totalOtherAllowance,
+                totalPositiveSalary,
+                totalNPS,
+                totalGPF,
+                totalGIS,
+                totalNegativeSalary,
+                totalNetSalary,
+                totalTDS,
+                totalNPSByEmp,
+                NPSApplicable,
+              },
+            });
+          }}
+        >
+          Calculate Tax
+        </button>
+      </div>
+
     </div>
   );
 }
