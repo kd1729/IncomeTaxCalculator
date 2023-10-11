@@ -28,22 +28,26 @@ export default function Profile() {
   return (
     <div className="grid justify-center items-center">
       {/* Toggle Button */}
-      <div className="flex flex-row gap-4 justify-center my-16">
+      <div className="flex flex-row gap-10 justify-center my-16">
         <div className="flex flex-row ">
-          <label className=" font-bold text-3xl text-black">NPS </label>
+          <label className=" font-bold text-3xl text-white nps--class">
+            NPS{" "}
+          </label>
           <input
             type="checkbox"
-            className="ml-2 w-8 hover:cursor-pointer"
+            className="ml-2 w-8 hover:cursor-pointer checkbox--class"
             checked={NPSApplicable}
             onChange={(e) => setNPSApplicable((e) => !e)}
           />
         </div>
 
         <div className="flex flex-row">
-          <label className=" font-bold text-3xl text-black">GPF </label>
+          <label className=" font-bold text-3xl text-white gpf--class">
+            GPF{" "}
+          </label>
           <input
             type="checkbox"
-            className="ml-2 w-8 hover:cursor-pointer"
+            className="ml-2 w-8 hover:cursor-pointer checkbox--class"
             checked={!NPSApplicable}
             onChange={(e) => setNPSApplicable((e) => !e)}
           />
@@ -169,7 +173,7 @@ export default function Profile() {
 
       <div className=" flex justify-center">
         <button
-          className="bg-blue-700 hover:bg-blue-900 text-white text-3xl font-semibold py-4 px-8 rounded mt-8 w-40"
+          className="submit-button--class"
           onClick={() => {
             navigate("/salary", {
               state: {
