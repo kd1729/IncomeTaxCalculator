@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import '../index.css'
 export default function TaxCalculator() {
   const location = useLocation();
   const { state } = location;
